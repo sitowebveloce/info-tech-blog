@@ -1,0 +1,10 @@
+.signup-messages{
+    font-size: 0.9rem;
+    opacity: 0.8;
+    color: red;
+    text-align: center;
+    padding: 10px;
+    margin-right: 18px;
+    font-weight: 500;
+    line-height: 1.3;
+}

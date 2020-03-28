@@ -1,0 +1,117 @@
+<%- include ('partials/header') -%>
+
+<header class="info-header">
+  <div class="contentHeader">
+    <h1 class="info-title">VMW Info.blog.com</h1>
+  </div>
+</header>
+<div class="content sticky">
+  <div class="info-subtitle">
+    Do not miss usefull information about VMs. Stay informed!
+  </div>
+  <div class="info-search">
+    <div class="info-home">
+      <a href="/"><img src="img/home.png" class="btn-home" alt="home"></a>
+    </div>
+    <form class="search-form" action="/searchinfo" method="POST">
+      <input type="text" name="search" class="search-input" id="search-input" placeholder="Search">
+      <input type='submit' id="search-submit" class="search-submit">
+    </form>
+  </div>
+
+  <button class="info-btn-add">+</button>
+  <div class="info-msg">
+    <%= typeof msg != 'undefined' ? msg : ''%>
+  </div>
+
+  <!-- <div class="content">
+    <form action="/uploads" method="POST" class="info-modal-form" enctype="multipart/form-data">
+      <div>
+        <input type="file" name="myimg" class="" />
+      </div>
+      <button type="button">Submit</button>
+    </form>
+    <div class="ifo-img-min">
+      <% if( typeof file !== 'undefined' || null) { %>
+      <img src="<%= typeof file !== 'undefined' ? file : null %>" alt="" class="img-min">
+      <% }else{  %>
+      ''
+      <% } %>
+    </div>
+  </div> -->
+
+
+</div>
+
+
+<!-- modal add post  -->
+<div class="info-modal-window">
+  <div class="info-modal-windows-up">
+    <button class="info-modal-close">X</button>
+    <!-- <div class="info-modal-title">Add Info</div> -->
+    <div>
+
+      <form action="/infopost" method="POST" class="info-modal-form">
+        <div>
+          <label for="title">Title</label>
+          <input type="text" name="title" class="info-modal-input-title" placeholder="Title" required />
+        </div>
+        <div>
+          <label for="">Info Blog</label>
+          <textarea name="text" id="" cols="30" rows="10" class="editor"></textarea>
+
+        </div>
+
+        <div class="info-modal-select">
+          <label for="select-importance">Importance</label>
+          <select name="importance" class="select-importance">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+        <div class="info-modal-submit">
+          <button type="submit" class="info-btn-modal-submit">Insert</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- RENDER POSTS -->
+
+<section class="sec-1">
+  <% posts.forEach(item =>{ %>
+  <div class="content">
+    <div class="info-card">
+      <div class="info-card-title"> <%= item.title %> </div>
+      <div class="info-card-importance">Id: <%= item._id %> </div>
+      <div
+        class="info-card-importance <%= item.importance === 'low' ? 'low' : item.importance === 'high' ? 'high' :  item.importance === 'medium' ? 'medium' : null %>">
+        <b>Relevance: </b>
+        <%= item.importance  %></div>
+      <div class="info-card-time"><b>Date: </b>
+        <% let time = new Date(item.createdAt) %>
+        <% let options = { day: 'numeric', month: 'numeric', year: 'numeric', hour:'numeric', minute:'numeric' }; %>
+        <%= time.toLocaleDateString('it-IT', options) %>
+        <%= time.hour %>
+      </div>
+      <div class="info-card-text">
+        <%- item.text %>
+
+      </div>
+      <div class="confirm-del">
+        <button onclick="toggleDeleteDiv(`<%= item._id %>`)" class='confirm-del-btn-<%= item._id %>'>Delete</button>
+      </div>
+      <div class='hide info-btn-del-<%= item._id %>'>
+        <form action="/deletepost/<%= item._id %>?_method=DELETE" method="POST">
+          <button class='btn-del'>Confirm</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+  <% }); %>
+</section>
+
+<%- include ('partials/footer') -%>
