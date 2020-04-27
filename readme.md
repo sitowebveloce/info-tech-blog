@@ -1,27 +1,33 @@
 # Info Tech Blog
 
->Info tech blog posts application.
+Info tech blog posts application.
 
-![](/public/img/infoblog.gif)
+![Info Tech Blog](/public/img/infoblog.gif)
 
 
 ## Usage 
-Rename 'env.env' to '.env', fill the fields with your own data, in particular only the mongodb string connection field 'MONGO_URI= your-db-string-connection'.
-You need also to change the proxy ip address inside the package.json in react client directory, for the image upload. After changed, you need to redo the build (npm run build) and place the files inside the 'reactApp/build1' folder.
-```
-"proxy": "http://your.ip.address",
-```
-and also, inside the routes nodejs directory, in index.js, this lines with your ip address:
-```
-await upload(req, res, (err) => {
-    let url = '';
-    if (req.file !== undefined) {
-      url = `http://your.ip.address/uploads/${req.file.filename}`;
-    } else {
-      url = 'http://your.ip.address/uploads/not-found.jpg';
-    };
+Rename 'env.env' file to '.env', fill the empties fields with your own data, in particular:
 
-```
+- MONGO_URI=your-db-string-connection
+- JWT_SECRET=your-jwt-secret-string
+- JWT_EXP=1d
+  (token expiration in days)
+- JWT_COOKIE_EXP=1
+  (cookie duration in days)
+- SERVER=https://www.you-web-link.com
+
+This application save the images files in the local public server forder.
+
+ If you change client files, you need to redo the build 
+ ```
+ npm run build
+ ```
+ place the build files inside the 
+ ```
+ reactApp/build1
+  ```
+
+folder.
 
 
 ## Install dependencies

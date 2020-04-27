@@ -26,12 +26,11 @@ function Login(props) {
   //*** LOGIN 
   async function loginDB(user) {
     let url = "/user/login";
-
     // Fetch
     await axios
       .post(url, user)
       .then(response => {
-        // console.log(response);
+       // console.log(response);
         // Clear errors
         setUsername({ message: '' });
         setPassword({ message: '' });
@@ -46,10 +45,13 @@ function Login(props) {
         if (error.response) {
           // The request was made and the server responded with a status code
           // that falls out of the range of 2xx
-          // console.log(error.response.data);
+           // console.log(error.response.data.message);
           // console.log(error.response.status);
+          if (error.response.status === 400) {
+            setUsername({ message: error.response.data.message });
+          }
           if (error.response.status === 401) {
-            setUsername({ message: '🥺 Invalid Credentials.' });
+            setUsername({ message: error.response.data.message });
           }
           // console.log(error.response.headers);
         } else if (error.request) {
@@ -63,13 +65,6 @@ function Login(props) {
         }
         // console.log(error.config);
         // console.log(JSON.parse(error.config.data));
-        let dd = JSON.parse(error.config.data);
-        if (dd.username.length === 0) {
-          setUsername({ message: '🚸 Insert Email.' });
-        };
-        if (dd.password.length === 0) {
-          setPassword({ message: '🚸 Insert Password.' });
-        };
 
       });
   };
@@ -84,7 +79,7 @@ function Login(props) {
     // Create an object
     let data = {
       // _id: Math.floor(Math.random() * 1000000000000000) + 'eed231',
-      username: email,
+      email: email,
       password: psw
     };
     // Run function context add new post

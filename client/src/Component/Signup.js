@@ -30,13 +30,14 @@ function Signup(props) {
     await axios
       .post(url, user)
       .then(response => {
-
         // Close modal windows
         openModalSignUp();
         // Flash message
         contextUsers.flashMessage(`👌 Signup success.`);
         // setFetchSuccess(response.data);
         setFetchError({ success: true, data: [{}] })
+        // Fetch user info
+        contextUsers.whoIsLogged();
 
       })
       .catch(error => {
@@ -133,7 +134,7 @@ function Signup(props) {
             }
           </div>
 
-          <form onSubmit={onSubmit} className="info-modal-form">
+          <form autoComplete="off" onSubmit={onSubmit} className="info-modal-form">
             <div>
               <label htmlFor="fname"></label>
               <input

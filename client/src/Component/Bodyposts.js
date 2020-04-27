@@ -84,7 +84,7 @@ function Bodyposts() {
 
         Made with big
   <i className='i-love'> ♥ </i> by
-  <a className='a-love' target="_blank" href="mailto:alessandro.carta@gmail.com"> @alex Paper</a>
+  <a className='a-love' target="_blank" rel="noopener noreferrer" href="mailto:alessandro.carta@gmail.com"> @alex Paper</a>
       </div>
 
     </>

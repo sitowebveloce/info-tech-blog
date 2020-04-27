@@ -28,15 +28,15 @@ export const GlobalUsersProvider = ({ children }) => {
 
   //*** FETCH LOGGED IN USER AND STORE IN THE GLOBAL CONTEXT */
   async function whoIsLogged() {
-    let url = '/user/whoisloggedin';
+    let url = '/user/whoisin';
     await axios
       .get(url)
       .then(response => {
-        // console.log(response);
-        if (response.data.isAuthenticated === true) {
+         // console.log(response);
+        if (response.data.success === true) {
           dispatch({
             type: 'FETCH_USER_SUCCESS',
-            payload: response.data.data
+            payload: response.data.user
           })
         }
       })

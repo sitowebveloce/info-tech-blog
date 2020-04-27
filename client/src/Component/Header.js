@@ -15,7 +15,7 @@ function Header(props) {
   // Import CONTEXT
   const context = React.useContext(GlobalContext);
   const contextUsers = React.useContext(GlobalUsersContext);
-  // console.log(contextUsers)
+   // console.log(contextUsers)
   const { searchPosts } = context;
   // Function handleClick open Drawer
   const openDrawer = () => {
