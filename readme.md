@@ -4,6 +4,10 @@ Info tech blog posts application.
 
 ![Info Tech Blog](/public/img/infoblog.gif)
 
+## Web Stack
+- BackEnd : NodeJs
+- FrontEnd : ReactJs
+- Database: MongoDb(cloud)
 
 ## Usage 
 Rename 'env.env' file to '.env', fill the empties fields with your own data, in particular:
