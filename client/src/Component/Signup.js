@@ -17,6 +17,7 @@ function Signup(props) {
   const [psw, setPsw] = React.useState("");
   const [confirm, setConfirm] = React.useState("");
   const [role, setRole] = React.useState("user");
+  const [secret, setSecret] = React.useState('');
 
   // FETCH ERROR
   const [fetchError, setFetchError] = React.useState({
@@ -78,7 +79,8 @@ function Signup(props) {
       email: email,
       password: psw,
       pswConfirm: confirm,
-      role
+      role,
+      secret
     };
 
     // Run function context add new post
@@ -90,6 +92,7 @@ function Signup(props) {
     setEmail("");
     setPsw("");
     setConfirm("");
+    setSecret('');
     // Close modal windows
     // openModalSignUp();
   }
@@ -99,11 +102,13 @@ function Signup(props) {
   // console.log(fetchError)
   if (fetchError.data !== undefined) {
     resError = fetchError.data.map(item => {
+    // console.log(item)
       if (item.fname !== undefined) { return item.fname }
       if (item.lname !== undefined) { return item.lname }
       if (item.email !== undefined) { return item.email }
       if (item.password !== undefined) { return item.password }
       if (item.role !== undefined) { return item.role }
+      if(item.secret !== undefined) {return item.secret}
     }
     );
   }
@@ -119,7 +124,7 @@ function Signup(props) {
             : "info-modal-window info-modal-window-show"
         }
       >
-        <div className="info-modal-windows-up">
+        <div className="info-modal-windows-up-signup">
           <button onClick={() => openModalSignUp()} className="info-modal-close">
             X
           </button>
@@ -195,7 +200,18 @@ function Signup(props) {
               // required
               />
             </div>
-
+            <div>
+              <label htmlFor="secret"></label>
+              <input
+                type="password"
+                name="secret"
+                value={secret}
+                onChange={e => setSecret(e.target.value)}
+                className="info-modal-input-title"
+                placeholder="Secret"
+              // required
+              />
+            </div>
             <div className="info-modal-select">
               <label htmlFor="select-importance">Role</label>
               <select
@@ -209,10 +225,11 @@ function Signup(props) {
 
               </select>
             </div>
+           
             <div className="info-modal-submit">
               <button type="submit" className="info-btn-modal-submit">
-                Insert
-                </button>
+                Sumbit
+              </button>
             </div>
           </form>
         </div>

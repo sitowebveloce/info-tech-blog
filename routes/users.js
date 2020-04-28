@@ -12,7 +12,7 @@ const { isLogged } = require('../middleware/isLogged');
 //*** Registration
 router.post('/register', async(req, res, next) => {
     // Deconstrunct REQ.BODY
-    let { fname, lname, email, password, pswConfirm, role } = req.body;
+    let { fname, lname, email, password, pswConfirm, role, secret } = req.body;
     // console.log(fname, lname, email, password, pswConfirm, role)
     //********* GLOBAL VARIABLES */
     // User match variable
@@ -89,6 +89,14 @@ router.post('/register', async(req, res, next) => {
     if (role !== 'user' && role !== 'admin' && role !== 'publisher') {
         let roleErr2 = { role: 'Insert a valid role.' };
         errArray.push(roleErr2);
+    }
+    if (!secret) {
+        let secretErr = { secret: 'Insert a valid secret.' };
+        errArray.push(secretErr);
+    }
+    if (secret !== process.env.SIGNUP_SECRET) {
+        let secretErr = { secret: 'Insert a valid secret.' };
+        errArray.push(secretErr);
     }
 
     // console.log(errArray)

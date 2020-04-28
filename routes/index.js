@@ -295,7 +295,7 @@ router.post('/infopost', isLogged, async(req, res) => {
 
         } else {
             // Response not authorized
-            msg = 'Not authorized.'
+            msg = 'Role not authorized.'
             return res.status(401).json({
                 success: false,
                 message: msg

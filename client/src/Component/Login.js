@@ -102,7 +102,7 @@ function Login(props) {
             : "info-modal-window info-modal-window-show"
         }
       >
-        <div className="info-modal-windows-up">
+        <div className="info-modal-windows-up-login">
           <button onClick={() => openModalLogin()} className="info-modal-close">
             X
           </button>
@@ -154,7 +154,7 @@ function Login(props) {
             </div>
             <div className="info-modal-submit">
               <button type="submit" className="info-btn-modal-submit">
-                Insert
+                Submit
                 </button>
             </div>
           </form>

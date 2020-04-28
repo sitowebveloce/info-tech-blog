@@ -98,7 +98,8 @@ function Header(props) {
                 <div>{contextUsers.state.user._id !== 0 && contextUsers.state.user.fname !== undefined ?
                   `Ciao ${contextUsers.state.user.fname}`
                   :
-                  'Usefull information about tech. Stay informed 🤓!'}</div>
+                  'Usefull information about tech. Stay informed 🤓!'}
+                  </div>
               </div>
 
             </div>
@@ -128,9 +129,14 @@ function Header(props) {
               />
             </form>
           </div>
-          <button onClick={() => openModalFunc()} className="info-btn-add">
-            +
-          </button>
+          <div>{contextUsers.state.user._id !== 0 && contextUsers.state.user.fname !== undefined ?
+                  
+                 <span onClick={openModalFunc} className="info-btn-add" role='img' aria-label>➕</span>
+                
+                  :
+                  '📖'}
+                  </div>
+         
 
           <div className={contextUsers.state.msg.length === 0 ? "info-msg" : "info-msg bck"}>{typeof contextUsers.state.msg != "undefined" ? contextUsers.state.msg : ""}</div>
         </div>

@@ -19,6 +19,7 @@ Rename 'env.env' file to '.env', fill the empties fields with your own data, in 
 - JWT_COOKIE_EXP=1
   (cookie duration in days)
 - SERVER=https://www.you-web-link.com
+- SIGNUP_SECRET=your-secret-string
 
 This application save the images files in the local public server forder.
 
